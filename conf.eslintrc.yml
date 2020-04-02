@@ -1,5 +1,6 @@
-extends:
-   - 'airbnb-base'
- env:
-   node: true
-   browser: true
+# Temp file for test
+# extends:
+#   - 'airbnb-base'
+# env:
+#   node: true
+#   browser: true

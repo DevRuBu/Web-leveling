@@ -21,6 +21,6 @@ app.get('/posts', function(req,res){
     return res.send((posts));
 });
 
-app.listen(27017, function() {
+app.listen(3333, function() {
     console.log(`Server started on port`);
 });

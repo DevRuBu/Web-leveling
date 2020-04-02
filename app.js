@@ -1,6 +1,29 @@
 const express = require('express')
 const app = express()
 const hogan = require('hogan-express')
+let fileRead = require("fs");
+
+app.post('/blog', (req, res) => {
+  return res.send((posts));
+});
+
+app.delete('/blog', (req, res) => {
+  let content = fileRead.readFileSync("page.json", "utf8");
+  
+});
+
+app.get('/blog', (req, res) => {
+  
+});
+
+app.get('/blog', (req, res) => {
+  
+});
+
+app.put('/blog', (req, res) => {
+  
+});
+
 const http_module = require('http')
 const http = http_module.Server(app)
 app.engine('html', hogan)
@@ -37,3 +60,9 @@ app.get('/', (req, res) => {
 http.listen(app.get('port'), () => {
   console.info('==> <img draggable="false" data-mce-resize="false" data-mce-placeholder="1" data-wp-emoji="1" class="emoji" alt="?" src="https://s.w.org/images/core/emoji/2.3/svg/1f30e.svg">  Go to http://localhost:%s', app.get('port'));
 })
+
+
+app.listen(3333, function() {
+  console.log(`Server started on port`);
+  console.info('==> <img draggable="false" data-mce-resize="false" data-mce-placeholder="1" data-wp-emoji="1" class="emoji" alt="?" src="https://s.w.org/images/core/emoji/2.3/svg/1f30e.svg">  Go to http://localhost:%s', app.get('port'));
+});
