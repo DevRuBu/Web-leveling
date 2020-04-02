@@ -1,8 +1,10 @@
-<!Doctype HTML>
 <html>
     <head>
     <title>█▄•◘•▄█</title>
-    <meta name="charset" charset="utf-8"\>
+    <meta charset="utf-8"\>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
 .footer {
     background-color:teal;
@@ -20,56 +22,50 @@
 }
 .lesf-bar {
     background-color:rgb(141, 175, 221);
-    margin-bottom: 2em;
+    top: 3em;
     width: 10em; 
-    position:fixed;
+    position: fixed;
 }
 .body {
     margin-top: 1em;
+    margin-bottom: 8em;
     left: 0;
     right: 0;
 }
 .conteiner {
-    left: 12em;
-    right: 1em;
+    margin-left: 12em;
     min-height: 10em;
     padding: 1em;
-    position:fixed;
-    background-color:rgb(188, 117, 255);
+    background-color:rgb(199, 142, 253);
+}
+.hr {
+    margin-left: 12em;
 }
 body{
     background-color: blanchedalmond; 
 }
     </style>
-    <script src="scripts.js">
-
-        
-    </script>
-    </head>
+</head>
     <body>
         <div class="head" name="title">
-             same head text 
+             {{{title}}}
         </div>
 
         <div class="body"> 
-            <div class="conteiner" name = "content">
-                same text
+            <div class="conteiner" name = "text">
+                {{{text}}}
             </div>
             <div class="lesf-bar">
                 <ol>
-                    <li><a href="#">Main menu</a></li>
-                    <li><a href="#">Game</a></li>
-                    <li><a href="#">Test Link</a></li>
-                    <li><a href="#">Test Link</a></li>
-                    <li><a href="#">Test Link</a></li>
-                    <li><a href="#">Test Link</a></li>
-                    <li><a href="#">Test Link</a></li>
-                    <li><a href="#">Test Link</a></li>
+                    <li><a href="http://localhost:3333/blog">Main menu</a></li>
+                    <li><a href="http://localhost:3333/blog/0">Page 1</a></li>
+                    <li><a href="http://localhost:3333/blog/1">Page 2</a></li>
+                    <li><a href="http://localhost:3333/blog/2">Page 3</a></li>
                 </ol>
             </div>
         </div>
         <footer class="footer">
-            <h1>Footer description:</h1>
+            <h3>Footer description:</h3>
             <P>This blog created for test end learn js</P>
         </footer>
     </body>

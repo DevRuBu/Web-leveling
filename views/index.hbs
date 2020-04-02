@@ -1,0 +1,180 @@
+<html>
+    <head>
+    <title>█▄•◘•▄█</title>
+    <meta charset="utf-8"\>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+.footer {
+    background-color:teal;
+    text-align: center;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width:100%;
+    margin: 0;   
+    position:fixed;
+}
+.head {
+    background-color:rgb(153, 223, 153);
+    text-align: center;
+}
+.lesf-bar {
+    background-color:rgb(141, 175, 221);
+    top: 3em;
+    width: 10em; 
+    position: fixed;
+}
+.body {
+    margin-top: 1em;
+    margin-bottom: 8em;
+    left: 0;
+    right: 0;
+}
+.conteiner {
+    margin-left: 12em;
+    min-height: 10em;
+    padding: 1em;
+    background-color:rgb(199, 142, 253);
+}
+.hr {
+    margin-left: 12em;
+}
+body{
+    background-color: blanchedalmond; 
+}
+    </style>
+
+</head>
+    <body>
+        <div class="head" name="title">
+             {{{title}}}
+        </div>
+
+        <div class="body"> 
+            <div class="conteiner" name = "text">
+                {{{text}}}
+            </div>
+            <hr class="hr">
+            <span name="id" style="opacity: 0;">{{{id}}}</span>
+            <div class="conteiner">
+                <form>
+                    <div>
+                        <label for="title">Title:</label>
+                        <input style="width: 100%" name = "title" value="{{{title}}}"/>
+                    </div>
+                    <div>
+                        <label for="text">Content:</label>
+                        <textarea style="width: 100%; min-height: 5em;" name="text">{{{text}}}</textarea>
+                    </div>
+                    <div>
+                        <button type="submit" onclick="myFunctionSave()">Save</button>
+                        <button type="submit" onclick="myFunctionAdd()">Add</button>
+                        <button type="submit" onclick="myFunctionReset()">Reset</button>
+                        <button type="submit" onclick="myFunctionDelete()">Delete</button>
+                    </div>
+                </form>
+            </div>
+            <div class="lesf-bar">
+                <ol>
+                    <li><a href="http://localhost:3333/blog">Main menu</a></li>
+                    <li><a href="http://localhost:3333/blog/0">Page 1</a></li>
+                    <li><a href="http://localhost:3333/blog/1">Page 2</a></li>
+                    <li><a href="http://localhost:3333/blog/2">Page 3</a></li>
+                </ol>
+            </div>
+        </div>
+        <footer class="footer">
+            <h3>Footer description:</h3>
+            <P>This blog created for test end learn js</P>
+        </footer>
+        <script>
+            
+            
+
+// Добавление блога
+function CreatePage(title, text) {
+    $.ajax({
+        url: "/blog",
+        contentType: "application/json",
+        method: "POST",
+        data: JSON.stringify({
+            name: title,
+            content: text
+        }),
+        success: function (blog) {
+            reset();
+        }
+    })
+}
+// Изменение блога
+function EditPage(title, text) {
+    $.ajax({
+        url: "/blog",
+        contentType: "application/json",
+        method: "PUT",
+        data: JSON.stringify({
+            name: title,
+            content: text
+        }),
+        success: function (blog) {
+            reset();
+        }
+    })
+}
+
+// Удаление блога
+function DeletePage(id) {
+    $.ajax({
+        url: "http://localhost:3333/blog/"+id,
+        contentType: "application/json",
+        method: "DELETE",
+        success: function (blog) {
+            console.log(blog);
+        }
+    })/*
+    const request = new XMLHttpRequest();
+    request.open('DELETE', "http://localhost:3333/blog/1");
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.addEventListener("readystatechange", () => {
+	if (request.readyState === 4 && request.status === 200) {
+	  console.log( request.responseTex );
+    }
+	  console.log( request.responseTex );*/
+});
+ 
+// Выполняем запрос 
+request.send();
+}
+
+function myFunctionSave() {
+    let title = this.elements["title"].value;
+    let text = this.elements["text"].value;
+    EditPage(title, text);
+    e.preventDefault();
+    reset();
+}
+function myFunctionAdd() {
+    let title = this.elements["title"].value;
+    let text = this.elements["text"].value;
+    CreatePage(title, text);
+    e.preventDefault();
+    reset();
+}
+function myFunctionReset() {
+    let form = document.forms;
+    form.reset();
+    e.preventDefault();
+    reset();
+}
+function myFunctionDelete() {
+    let id = document.elements["id"].value;
+    DeletePage(id);
+    e.preventDefault();
+    reset();
+}
+
+        </script>
+    </body>
+</html>
