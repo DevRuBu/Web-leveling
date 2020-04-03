@@ -27,7 +27,6 @@ app.get('/blog', (req, res) => {
 app.get('/blog/:id', function(req,res){
     const id = req.params.id;
     res.render('index', {
-        id: id,
         title: posts[id].title,
         text: posts[id].text
     });
@@ -89,8 +88,7 @@ app.put('/blog/:id', express.json(), function(req,res){
     const data = req.body;
     posts[id].title = data.title;
     posts[id].text = data.text;
-    res.send();
-    res.render(posts);
+    res.send(posts);
 });
 
 app.listen(3333, function() {
