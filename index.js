@@ -27,6 +27,7 @@ app.get('/blog', (req, res) => {
 app.get('/blog/:id', function(req,res){
     const id = req.params.id;
     res.render('index', {
+        id: id,
         title: posts[id].title,
         text: posts[id].text
     });
@@ -34,7 +35,7 @@ app.get('/blog/:id', function(req,res){
 
 const firsPosts = {
     title: 'Title, Hi!',
-    text: 'First page <br> <img src="https://www.enisa.europa.eu/news/enisa-news/privacy-standards-for-information-security/@@images/image" style="border-radius: 1em;opacity: 0.8; style="width: 303px; height: 150px;">'};
+    text: 'First page <div style="margin:1em;"><img src="https://www.enisa.europa.eu/news/enisa-news/privacy-standards-for-information-security/@@images/image" style="border-radius: 1em;opacity: 0.8; height:20em;width:100%;"></div>'};
 
 const posts = [
     {
@@ -85,10 +86,14 @@ app.get('/blog/:id', function(req,res){
 
 app.put('/blog/:id', express.json(), function(req,res){
     const id = req.params.id;
-    const data = req.body;
-    posts[id].title = data.title;
-    posts[id].text = data.text;
-    res.send(posts);
+    var { title: title, text: text } = req.body;
+   // posts[id] = (data);
+   
+    posts[id].title = title;
+    posts[id].text = req.body.text;
+   //
+   //
+   res.send(posts);
 });
 
 app.listen(3333, function() {
