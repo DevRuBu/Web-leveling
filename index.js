@@ -57,23 +57,15 @@ app.post('/blog/:id', function(req, res) {
     const data = req.body;
     console.log(data);
     posts.push(data);
-    return res.send(res.render('indexH', {
-        title: firsPosts.title,
-        text: firsPosts.text
-    })
-    );
+    return res.send(posts);
   });
   
 
   app.delete('/blog/:id', function(req, res) {
     const id = req.params.id;
-    const data = posts.splice([id]);
+    const data = posts.splice(id,1);
     console.log(data);
-    return res.send((res.render('indexH', {
-        title: firsPosts.title,
-        text: firsPosts.text
-    })
-    ));
+    return res.send(posts);
   });
 
   
@@ -97,11 +89,8 @@ app.put('/blog/:id', express.json(), function(req,res){
     const data = req.body;
     posts[id].title = data.title;
     posts[id].text = data.text;
-    return res.send((res.render('indexH', {
-        title: firsPosts.title,
-        text: firsPosts.text
-    })
-    ));
+    res.send();
+    res.render(posts);
 });
 
 app.listen(3333, function() {
