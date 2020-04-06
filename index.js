@@ -1,32 +1,32 @@
 const express = require('express')
-const bodyParser = require('body-parser')
 
 const path = require('path')
-const exphbs = require('express-handlebars')
+const exphbs = require('express-handlebars')//for template
 
 const app = express()
 
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(bodyParser.json());
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 
 app.engine('.hbs', exphbs({
     defaultLayout: 'main',
     extname: '.hbs',
-    layoutsDir: path.join(__dirname, 'views/layouts')
+    layoutsDir: path.normalize(path.join(__dirname, 'views', 'layouts'))
 }))
-app.set('view engine', '.hbs')
+
+const API_POPSTS = '/api/blog';
 app.set('views', path.join(__dirname, 'views'))
 
-app.get('/blog', (req, res) => {
-    res.render('indexH', {
+app.get(API_POPSTS, (req, res) => {
+    res.render('index', {
         title: firsPosts.title,
         text: firsPosts.text
     });
 })
 
-app.get('/blog/:id', function(req,res){
+app.get(API_POPSTS + '/:id', (req,res) => {
     const id = req.params.id;
-    res.render('index', {
+    res.render('page', {
         id: id,
         title: posts[id].title,
         text: posts[id].text
@@ -52,51 +52,33 @@ const posts = [
     }
 ];
 
-
-app.post('/blog/:id', function(req, res) {
+app.post(API_POPSTS +'/:id', (req,res) => {
     const data = req.body;
     console.log(data);
     posts.push(data);
     return res.send(posts);
   });
-  
 
-  app.delete('/blog/:id', function(req, res) {
+  app.delete(API_POPSTS + '/:id', (req,res) => {
     const id = req.params.id;
     const data = posts.splice(id,1);
     console.log(data);
     return res.send(posts);
   });
-
   
-app.get('/blogs', function(req,res){
+app.get('/blogs', (req,res) =>{
     return res.send((posts));
 });
 
-/*
-app.get('/blog', function(req,res){
-    return res.send((posts));
-});
-
-app.get('/blog/:id', function(req,res){
+app.put(API_POPSTS + '/:id', express.json(), (req,res) =>{
     const id = req.params.id;
-    return res.send((posts[id]));
-});
-*/
-
-app.put('/blog/:id', express.json(), function(req,res){
-    const id = req.params.id;
-    var { title: title, text: text } = req.body;
-   // posts[id] = (data);
-   
+    const { title, text } = req.body;
     posts[id].title = title;
-    posts[id].text = req.body.text;
-   //
-   //
-   res.send(posts);
+    posts[id].text = text;
+    res.send(posts);
 });
 
-app.listen(3333, function() {
+app.listen(3333, () => {
     console.log(`Server started on port`);
     console.info('==> <img draggable="false" data-mce-resize="false" data-mce-placeholder="1" data-wp-emoji="1" class="emoji" alt="?" src="https://s.w.org/images/core/emoji/2.3/svg/1f30e.svg">  Go to http://localhost:%s', app.get('port'));
 });

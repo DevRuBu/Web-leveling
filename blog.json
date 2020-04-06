@@ -1,0 +1,14 @@
+{
+    {
+    title: 'Page 1. Information technology (IT)',
+    text: 'Information technology (IT) is the use of computers to store, retrieve, transmit, and manipulate data[1] or information. IT is typically used within the context of business operations as opposed to personal or entertainment technologies.'
+    },
+    {
+        title: 'Page 2. Information Security',
+        text: 'Information Security is basically the practice of preventing unauthorized access, use, disclosure, disruption, modification, inspection, recording or destruction of information. Information can be physical or electrical one.'
+    },
+    {
+        title: 'Page 3. Title, Hi!',
+        text: 'Some text'
+    }
+}
