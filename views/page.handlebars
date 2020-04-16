@@ -20,19 +20,21 @@
             </div>
             <div>
                 <button onclick="myFunctionSave()">Save</button>
-                <button type="submit" onclick="myFunctionAdd()">Add</button>
-                <button type="submit" onclick="myFunctionReset()">Reset</button>
-                <button type="submit" onclick="myFunctionDelete()"><a href="/blog" style="text-decoration: none;color:black">Delete</a></button>
+                <button onclick="myFunctionAdd()">Add</button>
+                <button onclick="myFunctionReset()">Reset</button>
+                <button onclick="myFunctionDelete()"><a href="/" style="text-decoration: none;color:black">Delete</a></button>
             </div>
         </form>
     </div>
     <div class="lesf-bar">
         <ol>
-            <li><a href="http://localhost:3333/blog">Main menu</a></li>
-            <li><a href="http://localhost:3333/blog/0">Page 1</a></li>
-            <li><a href="http://localhost:3333/blog/1">Page 2</a></li>
-            <li><a href="http://localhost:3333/blog/2">Page 3</a></li>
-            <li><a href="" onclick="myFunctionSave()">Save</a></li>
+            <li><a href="/">Main menu</a></li>
+            {{{link}}}
+        <!--
+            <li><a onclick="myFunctionSave()">Save</a></li>
+            <li><a onclick="myFunctionDelete()">Delete</a></li>
+            <li><a onclick="myFunctionAdd()">myFunctionAdd</a></li>
+        -->
         </ol>
     </div>
 </div>
@@ -40,16 +42,14 @@
     <h3>Footer description:</h3>
     <P>This blog created for test end learn js</P>
 </footer>
-<script>
-            
-            
-
+<!--
+    <script>
 // Добавление блога
 function CreatePage(title, text, id) {
-    let url ='http://localhost:3333/blog/';
+    let url ='http://localhost:3333/';
     fetch(url+id, {
         contentType: "application/json",
-        method: "POST",
+        method: "PUT",
         body: JSON.stringify({
             title: title,
             text: text
@@ -61,9 +61,9 @@ function CreatePage(title, text, id) {
     console.log(response);
     });
 }
-// Изменение блога
+// Изменение 
 function EditPage(title, text, id) {
-    let url ='http://localhost:3333/blog/';
+    let url ='http://localhost:3333/';
     fetch(url+id, {
         contentType: "application/json",
         method: "PUT",
@@ -81,30 +81,33 @@ function EditPage(title, text, id) {
 
 // del page
 function DeletePage(id) {
-    let url ='http://localhost:3333/blog/';
-    fetch(url+id, {
-        method: 'DELETE',
+    let url ='/'+id;
+    let tempUrl = 'http://localhost:3333/2';
+    console.log(tempUrl);
+    fetch(tempUrl, {
+        //mode: 'cors',
+        method: 'DELETE'
     }).then(response => {
     console.log(response);
     });
  }
 
 function myFunctionSave() {
-	var titleInput = document.getElementsByName("title");
-	var textTexterea = document.getElementsByName("text");
-    var idSpan = document.getElementsByName("id");
-	var titles = titleInput[1].value;
-	var texts = textTexterea[1].value;
-    var ids = idSpan[0].innerText;
+	let titleInput = document.getElementsByName("title");
+	let textTexterea = document.getElementsByName("text");
+    let idSpan = document.getElementsByName("id");
+	let titles = titleInput[1].value;
+	let texts = textTexterea[1].value;
+    let ids = idSpan[0].innerText;
     EditPage(titles, texts, ids);
 }
 function myFunctionAdd() {
-	var titleInput = document.getElementsByName("title");
-	var textTexterea = document.getElementsByName("text");
-    var idSpan = document.getElementsByName("id");
-	var titles = titleInput[1].value;
-	var texts = textTexterea[1].value;
-    var ids = idSpan[0].innerText;
+	let titleInput = document.getElementsByName("title");
+	let textTexterea = document.getElementsByName("text");
+    let idSpan = document.getElementsByName("id");
+	let titles = titleInput[1].value;
+	let texts = textTexterea[1].value;
+    let ids = idSpan[0].innerText;
     CreatePage(titles, texts, ids);
 }
 function myFunctionReset() {
@@ -112,9 +115,9 @@ function myFunctionReset() {
     form.reset();
 }
 function myFunctionDelete() {
-    var id =id;
+    let idSpan = document.getElementsByName("id");
+    let id = idSpan[0].innerText;
     DeletePage(id);
 }
 
-</script>
-    
+    </script>-->

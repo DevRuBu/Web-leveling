@@ -7,35 +7,21 @@ const app = express()
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
+app.use('/', express.static(path.normalize(path.join(__dirname, 'views'))));
 
-app.engine('.hbs', exphbs({
+app.engine('.handlebars', exphbs({
     defaultLayout: 'main',
-    extname: '.hbs',
+    extname: '.handlebars',
     layoutsDir: path.normalize(path.join(__dirname, 'views', 'layouts'))
 }))
 
-const API_POPSTS = '/api/blog';
+const API_POPSTS = '/';
 app.set('views', path.join(__dirname, 'views'))
-
-app.get(API_POPSTS, (req, res) => {
-    res.render('index', {
-        title: firsPosts.title,
-        text: firsPosts.text
-    });
-})
-
-app.get(API_POPSTS + '/:id', (req,res) => {
-    const id = req.params.id;
-    res.render('page', {
-        id: id,
-        title: posts[id].title,
-        text: posts[id].text
-    });
-});
 
 const firsPosts = {
     title: 'Title, Hi!',
-    text: 'First page <div style="margin:1em;"><img src="https://www.enisa.europa.eu/news/enisa-news/privacy-standards-for-information-security/@@images/image" style="border-radius: 1em;opacity: 0.8; height:20em;width:100%;"></div>'};
+    text: 'First page <div style="margin:1em;"><img src="https://www.enisa.europa.eu/news/enisa-news/privacy-standards-for-information-security/@@images/image" style="border-radius: 1em;opacity: 0.8; height:20em;width:100%;"></div>'
+};
 
 const posts = [
     {
@@ -52,33 +38,58 @@ const posts = [
     }
 ];
 
-app.post(API_POPSTS +'/:id', (req,res) => {
+app.get(API_POPSTS, (req, res) => {
+    let links = '  ';
+for(i=0; i<posts.length; i++){
+    links += '<li><a href="/'+i+'">Page '+(i+1)+'</a></li>';
+};
+    res.render('index.handlebars', {
+        title: firsPosts.title,
+        text: firsPosts.text,
+        link: links
+    });
+})
+
+app.get(API_POPSTS + ':id', (req,res) => {
+    const id = req.params.id;
+    let links = '  ';
+for(i=0; i<posts.length; i++){
+    links += '<li><a href="/'+i+'">Page '+(i+1)+'</a></li>';
+};
+    res.render('page.handlebars', {
+        id: id,
+        title: posts[id].title,
+        text: posts[id].text,
+        link: links
+    });
+});
+
+app.post(API_POPSTS +':id', (req,res) => {
     const data = req.body;
     console.log(data);
     posts.push(data);
     return res.send(posts);
   });
 
-  app.delete(API_POPSTS + '/:id', (req,res) => {
-    const id = req.params.id;
+  app.delete(API_POPSTS + ':id', (req,res) => {
+    const id = 1;
     const data = posts.splice(id,1);
     console.log(data);
     return res.send(posts);
   });
   
-app.get('/blogs', (req,res) =>{
+app.get('/:id/blogs', (req,res) =>{
     return res.send((posts));
 });
 
-app.put(API_POPSTS + '/:id', express.json(), (req,res) =>{
+app.put(API_POPSTS + ':id', express.json(), (req,res) =>{
     const id = req.params.id;
     const { title, text } = req.body;
     posts[id].title = title;
     posts[id].text = text;
     res.send(posts);
 });
-
-app.listen(3333, () => {
-    console.log(`Server started on port`);
-    console.info('==> <img draggable="false" data-mce-resize="false" data-mce-placeholder="1" data-wp-emoji="1" class="emoji" alt="?" src="https://s.w.org/images/core/emoji/2.3/svg/1f30e.svg">  Go to http://localhost:%s', app.get('port'));
+let portValue = 3333;
+app.listen(portValue, () => {
+    console.log(`Server is start on ${process.env.PORT || portValue}. http://localhost:${process.env.PORT || portValue}`);
 });
