@@ -1,16 +1,35 @@
 exports.findAll = (req, res) => {
-    res.render('views/index', {
+    let links = '  ';
+    let postContainer = '  ';
+for(i=0; i<posts.length; i++){
+    links += '<li><a href="/'+i+'">Page '+(i+1)+'</a></li>';
+    postContainer += '<hr class="hr">'+
+    '<div class="posts" name = "text">'+
+        '<div class="heder-post"><h3><a href="/'+i+'">'+ posts[i].title +'</a></h3></div>'+
+        '<div class="body-post"><p>'+ posts[i].text +'</div>'+
+    '</div>';
+};
+
+
+    res.render('index.handlebars', {
         title: firsPosts.title,
-        text: firsPosts.text
+        text: firsPosts.text,
+        link: links,
+        postContainer: postContainer
     });
 }
 
 exports.findOne = (req,res) => {
     const id = req.params.id;
-    res.render('page', {
+    let links = '  ';
+for(i=0; i<posts.length; i++){
+    links += '<li><a href="/'+i+'">Page '+(i+1)+'</a></li>';
+};
+    res.render('page.handlebars', {
         id: id,
         title: posts[id].title,
-        text: posts[id].text
+        text: posts[id].text,
+        link: links
     });
 }
 
@@ -28,7 +47,7 @@ exports.destroy =  (req,res) => {
     return res.send(posts);
 }
  
-exports.findAllAll =  (req,res) => {
+exports.findAllJson =  (req,res) => {
     return res.send((posts));
 }
 
@@ -40,9 +59,11 @@ exports.update =  (req,res) => {
     res.send(posts);
 }
 
+
 const firsPosts = {
     title: 'Title, Hi!',
-    text: 'First page <div style="margin:1em;"><img src="https://www.enisa.europa.eu/news/enisa-news/privacy-standards-for-information-security/@@images/image" style="border-radius: 1em;opacity: 0.8; height:20em;width:100%;"></div>'};
+    text: 'First page'
+};
 
 const posts = [
     {

@@ -1,3 +1,4 @@
+/*Site*/
 .footer {
     background-color:teal;
     text-align: center;
@@ -9,18 +10,37 @@
     position:fixed;
 }
 .head {
+    background-image: url(https://coverfiles.alphacoders.com/422/42231.jpg); 
+    background-repeat: no-repeat;
+    background-size: cover;
     background-color:rgb(153, 223, 153);
+    height: 12em;
+    max-height: 12em;
+    color: white;
+}
+.head-text{
+    /*margin-left: 45%;*/
     text-align: center;
-    padding-top: 3em;
-    padding-bottom: 3em;
-    text-decoration-color: aliceblue;
+    align-content: center;
+    font-size: 24px;
+}
+.head-overlay{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 .lesf-bar {
     /*visibility: hidden;*/
     background-color:rgb(141, 175, 221);
-    top: 8em;
+    top: 13em;
     width: 10em; 
     position: fixed;
+    border: 0.01em solid black;
+    box-shadow: 1px 1px 4px black;
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
 }
 .lesf-bar a{
     text-decoration: none;
@@ -34,10 +54,12 @@
 .conteiner {
     margin-left: 12em;
    /* margin-right: 12em;*/
-    min-height: 10em;
+    min-height: 5em;
     padding: 1em;
-    background-color:rgb(199, 142, 253);
+    box-shadow: 1px 1px 4px black;
+    background-color:rgb(221, 221, 221);
 }
+/*posts*/
 .posts {
     margin-top: 1em;
     margin-left: 12em;
@@ -45,9 +67,24 @@
     min-height: 10em;
     padding: 1em;
     background-color:rgb(199, 142, 253);
+    box-shadow: 1px 1px 4px black;
 }
 .hr {
     margin-left: 12em;
+}
+.button-form a{
+    text-decoration: none;
+    color:black;
+}
+.heder-post a{
+    text-decoration: none;
+    color:black;
+}
+.heder-post {
+    text-align: left;
+}
+.body-post {
+    text-align:justify;
 }
 body{
     background-color: blanchedalmond; 

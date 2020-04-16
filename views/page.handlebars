@@ -1,5 +1,7 @@
 <div class="head" name="title">
-        {{{title}}}
+    <div class="head-overlay">
+        <div class="head-text">   {{{title}}} </div>
+    </div>
 </div>
 
 <div class="body"> 
@@ -18,11 +20,11 @@
                 <label for="text">Content:</label>
                 <textarea style="width: 100%; min-height: 5em;" name="text">{{{text}}}</textarea>
             </div>
-            <div>
+            <div class="button-form">
                 <button onclick="myFunctionSave()">Save</button>
                 <button onclick="myFunctionAdd()">Add</button>
                 <button onclick="myFunctionReset()">Reset</button>
-                <button onclick="myFunctionDelete()"><a href="/" style="text-decoration: none;color:black">Delete</a></button>
+                <button onclick="myFunctionDelete()"><a href="/">Delete</a></button>
             </div>
         </form>
     </div>
