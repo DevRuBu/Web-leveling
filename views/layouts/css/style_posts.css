@@ -1,0 +1,33 @@
+.form textarea,.form input{
+    font-family: inherit;
+    color: rgb(50, 50, 50);
+    border: 1px dashed rgb(50, 50, 50);
+    background: none;
+    width: 100%;
+}
+.form textarea{
+    font-size: 100%;
+    line-height: 1.15;
+    font-size: 1rem;
+}
+.form input {
+    overflow: visible;
+    font-weight: 600;
+    font-size: 1.2rem;
+    display: block;
+    margin: 0.67em 0;
+}
+.button-form a{
+    text-decoration: none;
+    color:black;
+}
+.heder-post a{
+    text-decoration: none;
+    color:black;
+}
+.heder-post {
+    text-align: left;
+}
+.body-post {
+    text-align:justify;
+}

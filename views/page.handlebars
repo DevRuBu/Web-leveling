@@ -5,26 +5,22 @@
 </div>
 
 <div class="body"> 
-    <div class="conteiner" name = "text">
-        {{{text}}}
-    </div>
-    <hr class="hr">
-    <span name="id" style="opacity: 0;">{{{id}}}</span>
+    <span name="id" style="position:absolute; opacity: 0;">{{{id}}}</span>
     <div class="conteiner">
-        <form>
+        <form class="form">
             <div>
-                <label for="title">Title:</label>
-                <input style="width: 100%" name = "title" value="{{{title}}}"/>
+                <!--<label for="title">Title:</label>-->
+                <input style="width: 100%" name = "title" placeholder="title" value="{{{title}}}"/>
             </div>
             <div>
-                <label for="text">Content:</label>
-                <textarea style="width: 100%; min-height: 5em;" name="text">{{{text}}}</textarea>
+                <!--<label for="text">Content:</label>-->
+                <textarea style="width: 100%; min-height: 5em;" placeholder="description" name="text">{{{text}}}</textarea>
             </div>
             <div class="button-form">
-                <button onclick="myFunctionSave()">Save</button>
-                <button onclick="myFunctionAdd()">Add</button>
-                <button onclick="myFunctionReset()">Reset</button>
-                <button onclick="myFunctionDelete()"><a href="/">Delete</a></button>
+                <button type="button" onclick="myFunctionSave()">Save</span></button>
+                <button type="button" onclick="myFunctionAdd()">Add</button>
+                <button type="button" onclick="myFunctionReset()">Reset</button>
+                <button type="button" onclick="myFunctionDelete()">Delete</button>
             </div>
         </form>
     </div>
@@ -44,82 +40,3 @@
     <h3>Footer description:</h3>
     <P>This blog created for test end learn js</P>
 </footer>
-<!--
-    <script>
-// Добавление блога
-function CreatePage(title, text, id) {
-    let url ='http://localhost:3333/';
-    fetch(url+id, {
-        contentType: "application/json",
-        method: "PUT",
-        body: JSON.stringify({
-            title: title,
-            text: text
-        }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(response => {
-    console.log(response);
-    });
-}
-// Изменение 
-function EditPage(title, text, id) {
-    let url ='http://localhost:3333/';
-    fetch(url+id, {
-        contentType: "application/json",
-        method: "PUT",
-        body: JSON.stringify({
-            title: title,
-            text: text
-        }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(response => {
-    console.log(response);
-    });
-}
-
-// del page
-function DeletePage(id) {
-    let url ='/'+id;
-    let tempUrl = 'http://localhost:3333/2';
-    console.log(tempUrl);
-    fetch(tempUrl, {
-        //mode: 'cors',
-        method: 'DELETE'
-    }).then(response => {
-    console.log(response);
-    });
- }
-
-function myFunctionSave() {
-	let titleInput = document.getElementsByName("title");
-	let textTexterea = document.getElementsByName("text");
-    let idSpan = document.getElementsByName("id");
-	let titles = titleInput[1].value;
-	let texts = textTexterea[1].value;
-    let ids = idSpan[0].innerText;
-    EditPage(titles, texts, ids);
-}
-function myFunctionAdd() {
-	let titleInput = document.getElementsByName("title");
-	let textTexterea = document.getElementsByName("text");
-    let idSpan = document.getElementsByName("id");
-	let titles = titleInput[1].value;
-	let texts = textTexterea[1].value;
-    let ids = idSpan[0].innerText;
-    CreatePage(titles, texts, ids);
-}
-function myFunctionReset() {
-    let form = document.forms;
-    form.reset();
-}
-function myFunctionDelete() {
-    let idSpan = document.getElementsByName("id");
-    let id = idSpan[0].innerText;
-    DeletePage(id);
-}
-
-    </script>-->

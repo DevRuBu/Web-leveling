@@ -1,14 +1,4 @@
 /*Site*/
-.footer {
-    background-color:teal;
-    text-align: center;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width:100%;
-    margin: 0;   
-    position:fixed;
-}
 .head {
     background-image: url(https://coverfiles.alphacoders.com/422/42231.jpg); 
     background-repeat: no-repeat;
@@ -72,21 +62,18 @@
 .hr {
     margin-left: 12em;
 }
-.button-form a{
-    text-decoration: none;
-    color:black;
-}
-.heder-post a{
-    text-decoration: none;
-    color:black;
-}
-.heder-post {
-    text-align: left;
-}
-.body-post {
-    text-align:justify;
-}
 body{
     background-color: blanchedalmond; 
     margin: 0;
+}
+.footer {
+    background-color:teal;
+    text-align: center;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width:100%;
+    margin: 0;   
+    position:fixed;
+    font-size: 0.7rem;
 }
