@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/DevRuBu/Web-leveling#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "express-handlebars": "^4.0.3"
   }
 }
